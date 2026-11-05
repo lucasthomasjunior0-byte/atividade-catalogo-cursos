@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: 004-unique-instrutor-email
+      author: catalogocursos
+      comment: Impede o cadastro de dois instrutores com o mesmo email.
+      changes:
+        - addUniqueConstraint:
+            tableName: instrutor
+            columnNames: email
+            constraintName: uk_instrutor_email
+      rollback:
+        - dropUniqueConstraint:
+            tableName: instrutor
+            constraintName: uk_instrutor_email

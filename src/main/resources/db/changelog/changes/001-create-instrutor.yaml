@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-instrutor
+      author: catalogocursos
+      comment: Cria primeiro a tabela de instrutores, ainda sem a restrição de email único.
+      changes:
+        - createTable:
+            tableName: instrutor
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_instrutor
+                    nullable: false
+              - column:
+                  name: nome
+                  type: VARCHAR(120)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: VARCHAR(160)
+                  constraints:
+                    nullable: false
+      rollback:
+        - dropTable:
+            tableName: instrutor

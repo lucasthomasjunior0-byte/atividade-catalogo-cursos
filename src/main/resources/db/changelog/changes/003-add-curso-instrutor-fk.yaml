@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-add-curso-instrutor-fk
+      author: catalogocursos
+      comment: Relaciona cada curso a exatamente um instrutor existente.
+      changes:
+        - addForeignKeyConstraint:
+            constraintName: fk_curso_instrutor
+            baseTableName: curso
+            baseColumnNames: instrutor_id
+            referencedTableName: instrutor
+            referencedColumnNames: id
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+      rollback:
+        - dropForeignKeyConstraint:
+            baseTableName: curso
+            constraintName: fk_curso_instrutor
