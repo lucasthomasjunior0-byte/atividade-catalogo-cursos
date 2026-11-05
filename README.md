@@ -6,6 +6,7 @@ Aplicação independente em Spring Boot que cadastra instrutores e cursos e exp�
 
 - Lucas Henrique
 - Vitor Domingues
+- Guilherme Eduardo
 
 ## Tecnologias utilizadas
 
