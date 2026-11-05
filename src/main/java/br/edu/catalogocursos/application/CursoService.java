@@ -3,7 +3,6 @@ package br.edu.catalogocursos.application;
 import br.edu.catalogocursos.application.exception.RecursoNaoEncontradoException;
 import br.edu.catalogocursos.domain.Curso;
 import br.edu.catalogocursos.domain.Instrutor;
-import br.edu.catalogocursos.domain.NivelCurso;
 import br.edu.catalogocursos.repository.CursoRepository;
 import br.edu.catalogocursos.repository.InstrutorRepository;
 import org.springframework.stereotype.Service;
@@ -22,10 +21,9 @@ public class CursoService {
     }
 
     @Transactional
-    public Curso cadastrar(String titulo, Integer cargaHoraria, NivelCurso nivel, Long instrutorId) {
+    public Curso cadastrar(Curso curso, Long instrutorId) {
         Instrutor instrutor = instrutorRepository.findById(instrutorId)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Instrutor não encontrado"));
-        Curso curso = new Curso(titulo, cargaHoraria, nivel);
         instrutor.adicionarCurso(curso);
         return cursoRepository.save(curso);
     }
